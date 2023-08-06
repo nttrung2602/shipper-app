@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.OrderDetailFragment">
+    tools:context=".view.fragment.OrderDetailFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <!-- TODO: Update blank fragment layout -->
         <TextView
@@ -36,7 +36,26 @@
             android:text="Mã hóa đơn: Unknow"
             android:textColor="#E1000000"
             android:textSize="25sp" />
-
+        <TextView
+            android:id="@+id/time_receive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="Thời gian nhận đơn: 6/7/2023"
+            android:textColor="#E1000000"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/time_complete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="Thời gian hoàn tất đơn: 6/7/2023"
+            android:textColor="#E1000000"
+            android:textSize="18sp" />
         <View
             android:layout_width="match_parent"
             android:layout_height="5dp"

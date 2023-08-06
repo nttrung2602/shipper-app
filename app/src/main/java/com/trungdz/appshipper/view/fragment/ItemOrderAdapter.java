@@ -1,4 +1,4 @@
-package com.trungdz.appshipper.fragment;
+package com.trungdz.appshipper.view.fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.trungdz.appshipper.databinding.ItemOrderBinding;
-import com.trungdz.appshipper.model.Order;
+import com.trungdz.appshipper.service.model.Order;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class ItemOrderAdapter extends RecyclerView.Adapter<ItemOrderAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemOrderBinding binding=ItemOrderBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+        ItemOrderBinding binding= ItemOrderBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
         return new ViewHolder(binding);
     }
 
@@ -54,7 +54,7 @@ public class ItemOrderAdapter extends RecyclerView.Adapter<ItemOrderAdapter.View
         void bindData(Order data){
             String textForButton="";
             if(data.getStatus()==1) {
-                textForButton="Xác nhận";
+                textForButton="Nhận";
             }else if (data.getStatus()==4){
                 textForButton="Xem";
             }

@@ -1,16 +1,11 @@
 package com.trungdz.appshipper.viewmodel;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
-import com.trungdz.appshipper.model.InfoLogin;
+import com.trungdz.appshipper.service.model.InfoLogin;
 import com.trungdz.appshipper.repository.AuthRepository;
-import com.trungdz.appshipper.response.AuthLoginResponse;
-import com.trungdz.appshipper.storage.MySharedPreference;
 
 public class LoginViewmodel extends ViewModel {
 

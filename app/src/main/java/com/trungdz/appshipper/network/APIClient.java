@@ -9,21 +9,34 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
     private static Retrofit retrofit;
-    private static String baseUrl="http://10.0.2.2:3005/";
+//    private static String baseUrl="http://10.0.2.2:3005/";
     static HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
     private static OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new MyInterceptor()).addInterceptor(interceptor).build();
 
 
+//    public static Retrofit getRetrofit() {
+//        if (retrofit == null) {
+//            // New Instance
+//            retrofit = new Retrofit.Builder().baseUrl(baseUrl)
+//                    .client(client)
+//                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .build();
+//        }
+//
+//        return retrofit;
+//    }
+    private static String baseUrl="http://10.0.2.2:3005/";
     public static Retrofit getRetrofit() {
         if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(baseUrl)
+            // New Instance
+            retrofit = new Retrofit.Builder().baseUrl(baseUrl)
                     .client(client)
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
 
+        // Existing Instance
         return retrofit;
     }
 }

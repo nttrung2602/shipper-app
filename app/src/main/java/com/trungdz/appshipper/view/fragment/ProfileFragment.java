@@ -1,4 +1,4 @@
-package com.trungdz.appshipper.fragment;
+package com.trungdz.appshipper.view.fragment;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,11 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.trungdz.appshipper.R;
-import com.trungdz.appshipper.activities.LoginActivity;
-import com.trungdz.appshipper.activities.MainActivity;
+import com.trungdz.appshipper.view.activity.LoginActivity;
 import com.trungdz.appshipper.databinding.FragmentProfileBinding;
-import com.trungdz.appshipper.model.UserInfo;
+import com.trungdz.appshipper.service.model.UserInfo;
 import com.trungdz.appshipper.viewmodel.ProfileFragmentViewmodel;
 
 /**

@@ -1,6 +1,6 @@
 package com.trungdz.appshipper.response;
 
-import com.trungdz.appshipper.model.Order;
+import com.trungdz.appshipper.service.model.Order;
 
 import java.util.List;
 

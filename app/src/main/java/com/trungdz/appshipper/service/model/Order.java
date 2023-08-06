@@ -1,4 +1,4 @@
-package com.trungdz.appshipper.model;
+package com.trungdz.appshipper.service.model;
 
 public class Order {
     private int id_order;
@@ -8,11 +8,41 @@ public class Order {
     private String name_customer;
     private String phone;
     private String description;
+
+
+    private String address;
     private int status;
     private String time_order;
     private String time_confirm;
-    private String time_expected;
     private String name_payment;
+    private String time_shipper_receive;
+    private String time_shipper_delivered;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTime_shipper_receive() {
+        return time_shipper_receive;
+    }
+
+    public void setTime_shipper_receive(String time_shipper_receive) {
+        this.time_shipper_receive = time_shipper_receive;
+    }
+
+    public String getTime_shipper_delivered() {
+        return time_shipper_delivered;
+    }
+
+    public void setTime_shipper_delivered(String time_shipper_delivered) {
+        this.time_shipper_delivered = time_shipper_delivered;
+    }
+
+
     public int getId_order() {
         return id_order;
     }
@@ -91,14 +121,6 @@ public class Order {
 
     public void setTime_confirm(String time_confirm) {
         this.time_confirm = time_confirm;
-    }
-
-    public String getTime_expected() {
-        return time_expected;
-    }
-
-    public void setTime_expected(String time_expected) {
-        this.time_expected = time_expected;
     }
 
     public String getName_payment() {

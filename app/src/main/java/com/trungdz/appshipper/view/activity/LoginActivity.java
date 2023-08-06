@@ -1,21 +1,16 @@
-package com.trungdz.appshipper.activities;
+package com.trungdz.appshipper.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.trungdz.appshipper.databinding.ActivityLoginBinding;
-import com.trungdz.appshipper.model.InfoLogin;
-import com.trungdz.appshipper.repository.AuthRepository;
-import com.trungdz.appshipper.response.AuthLoginResponse;
+import com.trungdz.appshipper.service.model.InfoLogin;
 import com.trungdz.appshipper.storage.MySharedPreference;
 import com.trungdz.appshipper.viewmodel.LoginViewmodel;
 
@@ -26,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         binding = ActivityLoginBinding.inflate(getLayoutInflater()); // Get views in layout
         View view = binding.getRoot();
         setContentView(view);
@@ -34,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // init SharedPreference for global app
         MySharedPreference.init(getApplicationContext());
+
 
         initHanleEvent();
         initObserver();
@@ -45,8 +42,8 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username=binding.edtAccount.getText().toString();
-                String password=binding.edtPassword.getText().toString();
+                String username = binding.edtAccount.getText().toString();
+                String password = binding.edtPassword.getText().toString();
 
                 InfoLogin infoLogin = new InfoLogin(username, password);
                 loginViewmodel.login(infoLogin);
@@ -54,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    void startMainActivity(){
+    void startMainActivity() {
         Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(myIntent);
@@ -64,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         loginViewmodel.getLoggedInSuccessfully().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean isSuccess) {
-                if(isSuccess){
+                if (isSuccess) {
                     startMainActivity();
                 }
             }

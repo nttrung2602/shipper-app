@@ -1,4 +1,4 @@
-package com.trungdz.appshipper.model;
+package com.trungdz.appshipper.service.model;
 
 public class UserInfo {
     private int id_shipper;
@@ -8,6 +8,7 @@ public class UserInfo {
     private String address;
     private String description;
     private int id_account;
+    private int id_shipping_partner;
 
     public int getId_shipper() {
         return id_shipper;
@@ -41,5 +42,4 @@ public class UserInfo {
         return id_shipping_partner;
     }
 
-    private int id_shipping_partner;
 }

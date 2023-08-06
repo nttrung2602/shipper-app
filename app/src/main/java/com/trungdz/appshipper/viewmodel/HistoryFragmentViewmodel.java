@@ -3,7 +3,7 @@ package com.trungdz.appshipper.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.trungdz.appshipper.model.Order;
+import com.trungdz.appshipper.service.model.Order;
 import com.trungdz.appshipper.repository.OrdersRepository;
 
 import java.util.List;
@@ -15,18 +15,28 @@ public class HistoryFragmentViewmodel extends ViewModel {
         return orderedList;
     }
 
-    MutableLiveData<List<Order>> orderedList=new MutableLiveData<>();
-    OrdersRepository ordersRepository=new OrdersRepository();
+    private MutableLiveData<List<Order>> orderedList = new MutableLiveData<>();
+    OrdersRepository ordersRepository = new OrdersRepository();
+    private MutableLiveData<String> messageResponse = new MutableLiveData<>();
 
-    public HistoryFragmentViewmodel(){
+    public MutableLiveData<String> getMessageResponse() {
+        return messageResponse;
+    }
+
+    public HistoryFragmentViewmodel() {
         getAllDeliveredOrders();
     }
 
-    void getAllDeliveredOrders(){
+    void getAllDeliveredOrders() {
         ordersRepository.getAllOrdersOfAShipperWithStatus(ORDERS_WERE_SHIPPED, new OrdersRepository.IResponse<List<Order>>() {
             @Override
             public void onResponse(List<Order> data) {
                 orderedList.postValue(data);
+            }
+
+            @Override
+            public void onError(String message) {
+                messageResponse.postValue(message);
             }
         });
     }

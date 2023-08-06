@@ -1,9 +1,7 @@
 package com.trungdz.appshipper.repository;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
-import com.trungdz.appshipper.model.InfoLogin;
+import com.trungdz.appshipper.service.model.InfoLogin;
 import com.trungdz.appshipper.network.APIClient;
 import com.trungdz.appshipper.response.AuthLoginResponse;
 import com.trungdz.appshipper.response.MessageResponse;

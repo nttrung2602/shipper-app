@@ -1,4 +1,4 @@
-package com.trungdz.appshipper.model;
+package com.trungdz.appshipper.service.model;
 
 public class Item {
     private int id_item;

@@ -8,7 +8,7 @@ public class MySharedPreference {
     public static final String KEY_ACCESS_TOKEN = "KEY_ACCESS_TOKEN";
     public static final String USER_INFO = "USER_INFO";
 
-    private static MySharedPreference instance = new MySharedPreference(); //singleton
+    private static MySharedPreference instance; //singleton
     private SharedPreferences mySharedPreferences;
 
     public static void init(Context context) {

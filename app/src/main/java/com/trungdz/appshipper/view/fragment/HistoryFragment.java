@@ -1,8 +1,7 @@
-package com.trungdz.appshipper.fragment;
+package com.trungdz.appshipper.view.fragment;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -15,9 +14,8 @@ import android.view.ViewGroup;
 
 import com.trungdz.appshipper.R;
 import com.trungdz.appshipper.databinding.FragmentHistoryBinding;
-import com.trungdz.appshipper.model.Order;
+import com.trungdz.appshipper.service.model.Order;
 import com.trungdz.appshipper.viewmodel.HistoryFragmentViewmodel;
-import com.trungdz.appshipper.viewmodel.OrderDetailForHistoryFragmentViewmodel;
 import com.trungdz.appshipper.viewmodel.SharedMainActivityViewmodel;
 
 import java.util.ArrayList;
@@ -79,6 +77,7 @@ public class HistoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         binding = FragmentHistoryBinding.inflate(inflater, container, false);
         historyFragmentViewmodel = ViewModelProviders.of(this).get(HistoryFragmentViewmodel.class);
         sharedMainActivityViewmodel = ViewModelProviders.of(requireActivity()).get(SharedMainActivityViewmodel.class);
@@ -113,6 +112,8 @@ public class HistoryFragment extends Fragment {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
+//                fragmentTransaction.add(R.id.frame_layout, fragment);
+
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

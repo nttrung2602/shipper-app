@@ -1,4 +1,4 @@
-package com.trungdz.appshipper.fragment;
+package com.trungdz.appshipper.view.fragment;
 
 import android.os.Bundle;
 
@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.trungdz.appshipper.databinding.FragmentOrderBinding;
-import com.trungdz.appshipper.model.Order;
+import com.trungdz.appshipper.service.model.Order;
 import com.trungdz.appshipper.viewmodel.MainActivityViewmodel;
 import com.trungdz.appshipper.viewmodel.OrderFragmentViewmodel;
 
@@ -78,7 +78,7 @@ public class OrderFragment extends Fragment {
         // Init ViewBinding and ViewModel for UI
         binding = FragmentOrderBinding.inflate(inflater, container, false);
         mainActivityViewmodel = ViewModelProviders.of(requireActivity()).get(MainActivityViewmodel.class);
-        orderFragmentViewmodel=ViewModelProviders.of(this).get(OrderFragmentViewmodel.class);
+        orderFragmentViewmodel = ViewModelProviders.of(this).get(OrderFragmentViewmodel.class);
         initUI();
         initObserver();
         // Inflate the layout for this fragment
@@ -102,13 +102,26 @@ public class OrderFragment extends Fragment {
         binding.listViewRecycle.setAdapter(itemOrderAdapter);
     }
 
-    void initObserver(){
+    void initObserver() {
         // quan sát listData của ViewModel để update lại UI order
         orderFragmentViewmodel.getUnconfirmedOrderList().observe(getViewLifecycleOwner(), new Observer<List<Order>>() {
             @Override
             public void onChanged(List<Order> orders) {
                 itemOrderAdapter.setDataList(orders);
                 itemOrderAdapter.notifyDataSetChanged();
+            }
+        });
+
+        orderFragmentViewmodel.getMessageResponse().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+            }
+        });
+        mainActivityViewmodel.getMessageResponse().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String msg) {
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
             }
         });
     }

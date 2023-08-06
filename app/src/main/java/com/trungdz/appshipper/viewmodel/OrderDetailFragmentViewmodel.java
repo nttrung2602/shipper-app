@@ -1,12 +1,10 @@
 package com.trungdz.appshipper.viewmodel;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.trungdz.appshipper.model.Item;
-import com.trungdz.appshipper.model.Order;
+import com.trungdz.appshipper.service.model.Item;
+import com.trungdz.appshipper.service.model.Order;
 import com.trungdz.appshipper.repository.OrdersRepository;
 
 import java.util.List;
@@ -17,16 +15,24 @@ public class OrderDetailFragmentViewmodel extends ViewModel {
     Order orderIsBeingShipped;
     MutableLiveData<List<Item>> itemList = new MutableLiveData<>();
     OrdersRepository ordersRepository = new OrdersRepository();
+    private MutableLiveData<String> messageResponse = new MutableLiveData<>();
+
+    public MutableLiveData<String> getMessageResponse() {
+        return messageResponse;
+    }
+
     public Order getOrderIsBeingShipped() {
         return orderIsBeingShipped;
     }
+
     public MutableLiveData<List<Item>> getItemList() {
         return itemList;
     }
 
-    public OrderDetailFragmentViewmodel(){
+    public OrderDetailFragmentViewmodel() {
         getOrdersIsBeingShipped();
     }
+
 
     public void getOrdersIsBeingShipped() {
         ordersRepository.getAllOrdersOfAShipperWithStatus(ORDERS_IS_SHIPPING, new OrdersRepository.IResponse<List<Order>>() {
@@ -40,8 +46,18 @@ public class OrderDetailFragmentViewmodel extends ViewModel {
                         public void onResponse(List<Item> data) {
                             itemList.postValue(data);
                         }
+
+                        @Override
+                        public void onError(String message) {
+                            messageResponse.postValue(message);
+                        }
                     });
                 }
+            }
+
+            @Override
+            public void onError(String message) {
+                messageResponse.postValue(message);
             }
         });
     }

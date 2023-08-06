@@ -1,27 +1,21 @@
-package com.trungdz.appshipper.fragment;
+package com.trungdz.appshipper.view.fragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.trungdz.appshipper.R;
-import com.trungdz.appshipper.databinding.FragmentOrderDetailBinding;
 import com.trungdz.appshipper.databinding.FragmentOrderDetailForHistoryBinding;
-import com.trungdz.appshipper.model.Item;
-import com.trungdz.appshipper.model.Order;
+import com.trungdz.appshipper.service.model.Item;
+import com.trungdz.appshipper.service.model.Order;
 import com.trungdz.appshipper.viewmodel.MainActivityViewmodel;
 import com.trungdz.appshipper.viewmodel.OrderDetailForHistoryFragmentViewmodel;
-import com.trungdz.appshipper.viewmodel.OrderDetailFragmentViewmodel;
 import com.trungdz.appshipper.viewmodel.SharedMainActivityViewmodel;
 
 import java.util.ArrayList;
@@ -101,8 +95,8 @@ public class OrderDetailForHistoryFragment extends Fragment {
 
     void initObserver() {
         // Display data for Order Detail Screen
-        orderDetailForHistoryFragmentViewmodel.getItemList().observe(getViewLifecycleOwner(), new Observer<List<Item>>() {
 
+        orderDetailForHistoryFragmentViewmodel.getItemList().observe(getViewLifecycleOwner(), new Observer<List<Item>>() {
             @Override
             public void onChanged(List<Item> data) {
                 // Set itemList for Adapter recyclerView
@@ -110,24 +104,20 @@ public class OrderDetailForHistoryFragment extends Fragment {
                 itemOrderInDetailAdapter.notifyDataSetChanged();
 
                 Order order = orderDetailForHistoryFragmentViewmodel.getShippedOrder();
-
+                // Display orders on screen
                 binding.idOrder.setText("MÃ HÓA ĐƠN: " + Integer.toString(order.getId_order()));
                 binding.customerName.setText(order.getName_customer());
+                binding.timeReceive.setText("Thời gian nhận đơn: " + order.getTime_shipper_receive());
+                binding.timeComplete.setText("Thời gian hoàn tất đơn: " + order.getTime_shipper_delivered());
                 binding.totalItemPrice.setText(String.format("%,d", order.getItem_fee()) + " đồng");
                 binding.deliveryFee.setText(String.format("%,d", order.getDelivery_fee()) + " đồng");
                 binding.totalOrderFee.setText(String.format("%,d", order.getTotal()) + " đồng");
-
-
             }
-
-
         });
     }
 
-
     void initUI() {
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         itemOrderInDetailAdapter = new ItemOrderInDetailAdapter(itemList);
         binding.listViewRecycler.setAdapter(itemOrderInDetailAdapter);
     }
